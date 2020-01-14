@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MealPlan } from '../interfaces';
 
 @Component({
-  selector: 'meal-plan',
+  selector: 'mpl-meal-plan',
   templateUrl: './meal-plan.component.html',
   styleUrls: ['./meal-plan.component.scss']
 })

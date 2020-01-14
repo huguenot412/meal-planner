@@ -4,7 +4,7 @@ import { MealPlan } from './interfaces/index';
 import { MealPlanComponent } from './meal-plan/meal-plan.component';
 
 @Component({
-  selector: 'meal-plans',
+  selector: 'mpl-meal-plans',
   templateUrl: './meal-plans.component.html',
   styleUrls: ['./meal-plans.component.scss']
 })
