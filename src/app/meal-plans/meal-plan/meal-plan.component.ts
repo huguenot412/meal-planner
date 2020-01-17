@@ -11,7 +11,6 @@ import { MealComponent } from '../meal/meal.component';
 export class MealPlanComponent implements OnInit {
 
   @Input() mealPlan: MealPlan;
-  @Input() mealPlanToggle: string;
 
   public isActive: boolean = false;
 
