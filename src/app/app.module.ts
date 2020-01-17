@@ -8,6 +8,7 @@ import { MealPlanComponent } from './meal-plans/meal-plan/meal-plan.component';
 import { MealComponent } from './meal-plans/meal/meal.component';
 import { CookbookComponent } from './cookbook/cookbook.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { NewMealPlanComponent } from './meal-plans/new-meal-plan/new-meal-plan.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
     MealPlanComponent,
     MealComponent,
     CookbookComponent,
-    ShoppingListComponent
+    ShoppingListComponent,
+    NewMealPlanComponent
   ],
   imports: [
     BrowserModule,
