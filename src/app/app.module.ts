@@ -6,13 +6,17 @@ import { AppComponent } from './app.component';
 import { MealPlansComponent } from './meal-plans/meal-plans.component';
 import { MealPlanComponent } from './meal-plans/meal-plan/meal-plan.component';
 import { MealComponent } from './meal-plans/meal/meal.component';
+import { CookbookComponent } from './cookbook/cookbook.component';
+import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MealPlansComponent,
     MealPlanComponent,
-    MealComponent
+    MealComponent,
+    CookbookComponent,
+    ShoppingListComponent
   ],
   imports: [
     BrowserModule,

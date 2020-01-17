@@ -1,0 +1,14 @@
+.nav {
+    margin: 1rem 0 2rem;
+}
+
+.nav__link {
+    padding: 1rem .8rem;
+    text-decoration: none;
+    transition: .2s ease-in-out;
+}
+
+.nav__link:hover {
+    background-color: #333;
+    color: #fff;
+}
