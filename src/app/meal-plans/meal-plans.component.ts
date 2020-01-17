@@ -2,9 +2,9 @@ import { ViewChildren, QueryList } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 
 import { MealPlan } from './interfaces/index';
-import { Meal } from './interfaces/index';
 import { MealPlanComponent } from './meal-plan/meal-plan.component';
-// import { MealPlanComponent } from './meal-plan/meal-plan.component';
+import { MealPlansService } from './meal-plans.service';
+
 
 
 @Component({
@@ -16,76 +16,16 @@ export class MealPlansComponent implements OnInit {
 
   @ViewChildren(MealPlanComponent) mealPlansList: QueryList<MealPlanComponent>
 
-  mealPlans: MealPlan[] = [
-    {
-      id: 1,
-      date: new Date(),
-      name: 'Meal Plan 1',
-      meals: [
-        {
-          name: 'Eggs'
-        },
-        {
-          name: 'Sandwich'
-        },
-        {
-          name: 'Spaghetti'
-        }
-      ]
-    },
-    {
-      id: 2,
-      date: new Date(),
-      name: 'Meal Plan 2',
-      meals: [
-        {
-          name: 'Cereal'
-        },
-        {
-          name: 'Salad'
-        },
-        {
-          name: 'Steak'
-        }
-      ]
-    },
-    {
-      id: 3,
-      date: new Date(),
-      name: 'Meal Plan 3',
-      meals: [
-        {
-          name: 'Cereal'
-        },
-        {
-          name: 'Salad'
-        },
-        {
-          name: 'Steak'
-        }
-      ]
-    },
-    {
-      id: 4,
-      date: new Date(),
-      name: 'Meal Plan 4',
-      meals: [
-        {
-          name: 'Cereal'
-        },
-        {
-          name: 'Salad'
-        },
-        {
-          name: 'Steak'
-        }
-      ]
-    }
-  ];
+  public mealPlans: MealPlan[] = [];
 
-  constructor() { }
+  constructor(public MealPlansService: MealPlansService) { }
 
   ngOnInit() {
+    this.mealPlans = this.getMealPlans();
+  }
+  
+  public getMealPlans(): MealPlan[] {
+    return this.MealPlansService.getMeals();
   }
 
   public toggleMealPlans(toggle: boolean): void {

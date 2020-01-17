@@ -1,7 +1,9 @@
-<div class="container">
-    <h2>{{ mealPlan.name }}</h2>
-    <button (click)="isActive = !isActive">{{ isActive ? 'Collapse' : 'Expand' }}</button>
-    <div *ngIf="isActive">
+<div class="meal-plan">
+    <h2 class="meal-plan__title">{{ mealPlan.date | date:'EEEE, MMMM d' }}</h2>
+    <button (click)="isActive = !isActive"
+        class="meal-plan__button">{{ isActive ? 'Collapse' : 'Expand' }}</button>
+    <div *ngIf="isActive"
+        class="meal-plan__meals">
         <mpl-meal *ngFor="let meal of mealPlan.meals"
             [meal]="meal"></mpl-meal>
     </div>
