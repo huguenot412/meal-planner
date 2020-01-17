@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MealPlan } from '../interfaces';
 
-import { MealComponent } from '../meal/meal.component';
-
 @Component({
   selector: 'mpl-meal-plan',
   templateUrl: './meal-plan.component.html',

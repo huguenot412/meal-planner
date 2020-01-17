@@ -15,7 +15,6 @@ import { MealPlanComponent } from './meal-plan/meal-plan.component';
 export class MealPlansComponent implements OnInit {
 
   @ViewChildren(MealPlanComponent) mealPlansList: QueryList<MealPlanComponent>
-  public mealPlanToggle: string = '';
 
   mealPlans: MealPlan[] = [
     {
@@ -89,12 +88,8 @@ export class MealPlansComponent implements OnInit {
   ngOnInit() {
   }
 
-  public toggleMealPlans(toggle: string): void {
-    if(toggle === 'expandAll') {
-      this.mealPlansList.forEach((mealPlan: MealPlanComponent) => mealPlan.isActive = true);
-    } else if(toggle === 'collapseAll') {
-      this.mealPlansList.forEach((mealPlan: MealPlanComponent) => mealPlan.isActive = false);
-    }
+  public toggleMealPlans(toggle: boolean): void {
+    this.mealPlansList.forEach((mealPlan: MealPlanComponent) => mealPlan.isActive = toggle);
   }
 
 }

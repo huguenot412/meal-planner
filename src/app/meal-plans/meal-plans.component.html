@@ -1,6 +1,6 @@
 <div class="meal-plans-container">
-    <button (click)="toggleMealPlans('expandAll')">Expand All</button>
-    <button (click)="toggleMealPlans('collapseAll')">Collapse All</button>
+    <button (click)="toggleMealPlans(true)">Expand All</button>
+    <button (click)="toggleMealPlans(false)">Collapse All</button>
     <mpl-meal-plan class="mpl-meal-plan"
         *ngFor="let mealPlan of mealPlans"
         [mealPlan]="mealPlan"></mpl-meal-plan>
