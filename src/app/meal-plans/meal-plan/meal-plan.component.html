@@ -1,6 +1,8 @@
 <div class="container">
-    <ul>
-        <li>{{ mealPlan.name }}</li>
-        <li>{{ mealPlan.id }}</li>
-    </ul>
+    <h2>{{ mealPlan.name }}</h2>
+    <button (click)="isActive = !isActive">{{ isActive ? 'Collapse' : 'Expand' }}</button>
+    <div *ngIf="isActive">
+        <mpl-meal *ngFor="let meal of mealPlan.meals"
+            [meal]="meal"></mpl-meal>
+    </div>
 </div>
