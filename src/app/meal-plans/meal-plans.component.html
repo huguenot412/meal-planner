@@ -17,5 +17,6 @@
     </div>
     <mpl-meal-plan class="mpl-meal-plan"
         *ngFor="let mealPlan of mealPlans"
-        [mealPlan]="mealPlan"></mpl-meal-plan>
+        [mealPlan]="mealPlan"
+        (updated)="updateMealPlans(days)"></mpl-meal-plan>
 </div>

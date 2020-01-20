@@ -1,11 +1,15 @@
 <div class="meal-plan">
     <h2 class="meal-plan__title">{{ mealPlan.date | date:'EEEE, MMMM d' }}</h2>
     <h2>{{mealPlan.id}}</h2>
-    <button (click)="isActive = !isActive"
-        class="meal-plan__button">{{ isActive ? 'Collapse' : 'Expand' }}</button>
     <div *ngIf="isActive"
         class="meal-plan__meals">
         <mpl-meal *ngFor="let meal of mealPlan.meals"
             [meal]="meal"></mpl-meal>
+        <div class="meal-plan-edit">
+            <input type="text" name="newMeal" placeholder="Add meal" [(ngModel)]="newMeal">
+            <button (click)="addMeal()">Add meal</button>
+        </div>
     </div>
+    <button (click)="isActive = !isActive"
+        class="meal-plan__button">{{ isActive ? 'Collapse' : 'Expand' }}</button>
 </div>

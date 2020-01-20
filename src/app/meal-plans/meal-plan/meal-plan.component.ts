@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { IMealPlan } from '../interfaces';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { MealPlan } from '../classes';
+import { MealPlansService } from '../meal-plans.service';
 
 @Component({
   selector: 'mpl-meal-plan',
@@ -8,13 +9,20 @@ import { IMealPlan } from '../interfaces';
 })
 export class MealPlanComponent implements OnInit {
 
-  @Input() mealPlan: IMealPlan;
+  @Input() public mealPlan: MealPlan;
+  @Output() public updated = new EventEmitter(); 
 
   public isActive: boolean = false;
+  public newMeal: string = '';
 
-  constructor() { }
+  constructor(public MealPlanService: MealPlansService) { }
 
   ngOnInit() {
+  }
+
+  public addMeal(): void {
+    this.MealPlanService.addMeal(this.mealPlan, this.newMeal);
+    this.updated.emit();
   }
 
 }
