@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MealPlan } from '../interfaces';
+import { IMealPlan } from '../interfaces';
 
 @Component({
   selector: 'mpl-meal-plan',
@@ -8,7 +8,7 @@ import { MealPlan } from '../interfaces';
 })
 export class MealPlanComponent implements OnInit {
 
-  @Input() mealPlan: MealPlan;
+  @Input() mealPlan: IMealPlan;
 
   public isActive: boolean = false;
 

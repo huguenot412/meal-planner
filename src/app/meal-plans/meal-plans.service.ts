@@ -1,5 +1,9 @@
-import { Injectable } from '@angular/core';
-import { MealPlan } from './interfaces';
+import { Injectable, ModuleWithComponentFactories } from '@angular/core';
+import { IMealPlan } from './interfaces';
+import { MealPlan } from './classes';
+import { MealPlanMap } from './types';
+
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -7,75 +11,17 @@ import { MealPlan } from './interfaces';
 export class MealPlansService {
 
   mealPlans: MealPlan[] = [
-    {
-      id: 1,
-      date: new Date(2020, 0, 17),
-      name: 'Meal Plan 1',
-      meals: [
-        {
-          name: 'Eggs'
-        },
-        {
-          name: 'Sandwich'
-        },
-        {
-          name: 'Spaghetti'
-        }
-      ]
-    },
-    {
-      id: 2,
-      date: new Date(2020, 0, 18),
-      name: 'Meal Plan 2',
-      meals: [
-        {
-          name: 'Cereal'
-        },
-        {
-          name: 'Salad'
-        },
-        {
-          name: 'Steak'
-        }
-      ]
-    },
-    {
-      id: 3,
-      date: new Date(2020, 0, 19),
-      name: 'Meal Plan 3',
-      meals: [
-        {
-          name: 'Cereal'
-        },
-        {
-          name: 'Salad'
-        },
-        {
-          name: 'Steak'
-        }
-      ]
-    },
-    {
-      id: 4,
-      date: new Date(2020, 0, 20),
-      name: 'Meal Plan 4',
-      meals: [
-        {
-          name: 'Cereal'
-        },
-        {
-          name: 'Salad'
-        },
-        {
-          name: 'Steak'
-        }
-      ]
-    }
+    new MealPlan(moment(new Date(2020, 0, 21)), [{name: 'Eggs'}, {name: 'Sandwich'}, {name: 'Salad'}]),
+    new MealPlan(moment(new Date(2020, 0, 24)), [{name: 'Cereal'}, {name: 'Soup'}, {name: 'Curry'}])
   ];
 
   constructor() { }
 
-  getMeals() {
-    return this.mealPlans;
+  getMeals(): MealPlanMap {
+    const mealPlanMap: MealPlanMap = {};
+    this.mealPlans.forEach((mealPlan) => {
+      mealPlanMap[mealPlan.id] = mealPlan;
+    })
+    return mealPlanMap;
   }
 }

@@ -1,5 +1,6 @@
 <div class="meal-plan">
     <h2 class="meal-plan__title">{{ mealPlan.date | date:'EEEE, MMMM d' }}</h2>
+    <h2>{{mealPlan.id}}</h2>
     <button (click)="isActive = !isActive"
         class="meal-plan__button">{{ isActive ? 'Collapse' : 'Expand' }}</button>
     <div *ngIf="isActive"
