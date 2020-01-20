@@ -19,9 +19,7 @@ export class MealPlansService {
 
   getMeals(): MealPlanMap {
     const mealPlanMap: MealPlanMap = {};
-    this.mealPlans.forEach((mealPlan) => {
-      mealPlanMap[mealPlan.id] = mealPlan;
-    })
+    this.mealPlans.forEach(mealPlan => mealPlanMap[mealPlan.id] = mealPlan);
     return mealPlanMap;
   }
 }
