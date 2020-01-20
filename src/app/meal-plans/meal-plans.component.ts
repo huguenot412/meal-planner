@@ -1,5 +1,6 @@
 import { ViewChildren, QueryList } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import {NgForm} from '@angular/forms';
 
 import { IMealPlan } from './interfaces/index';
 import { MealPlanComponent } from './meal-plan/meal-plan.component';
