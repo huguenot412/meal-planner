@@ -21,7 +21,7 @@ export class MealPlansComponent implements OnInit {
 
   public mealPlans: MealPlan[] = [];
   public days: number = 7;
-  public startDate: Date = new Date(2020, 0, 20);
+  public startDate: Date = new Date();
 
   constructor(public MealPlansService: MealPlansService) { }
 
@@ -41,9 +41,9 @@ export class MealPlansComponent implements OnInit {
     this.mealPlans = [];   
     const mealPlanMap: MealPlanMap = this.MealPlansService.getMeals();
     for(let i = 0; i < days; i++) {
-      if(mealPlanMap[moment(this.startDate).add(i, 'd').format('LL')]) {
-        this.mealPlans.push(mealPlanMap[moment(this.startDate).add(i, 'd').format('LL')]);
-        console.log('Meal plan found');
+      const mealPlan: MealPlan = mealPlanMap[moment(this.startDate).add(i, 'd').format('LL')];
+      if(mealPlan) {
+        this.mealPlans.push(mealPlan);
       } else {
         this.mealPlans.push(new MealPlan(moment(this.startDate).add(i, 'd')));
       }    
