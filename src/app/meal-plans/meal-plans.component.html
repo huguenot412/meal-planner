@@ -16,7 +16,7 @@
         <button (click)="toggleMealPlans(false)" class="toggle-buttons__button">Collapse All</button>
     </div>
     <mpl-meal-plan class="mpl-meal-plan"
-        *ngFor="let mealPlan of mealPlans"
+        *ngFor="let mealPlan of mealPlans; trackBy: trackByFn"
         [mealPlan]="mealPlan"
         (updated)="updateMealPlans(days)"></mpl-meal-plan>
 </div>

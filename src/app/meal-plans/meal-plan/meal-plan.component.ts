@@ -22,6 +22,7 @@ export class MealPlanComponent implements OnInit {
 
   public addMeal(): void {
     this.MealPlanService.addMeal(this.mealPlan, this.newMeal);
+    this.newMeal = '';
     this.updated.emit();
   }
 

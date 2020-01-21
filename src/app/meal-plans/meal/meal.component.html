@@ -1,1 +1,4 @@
-<h3 >{{ meal.name }}</h3>
+<h3 *ngIf="!editing">{{ meal.name }}</h3>
+<input type="text" *ngIf="editing" [(ngModel)]="editedMeal">
+<button (click)="deleteMeal()">Delete</button>
+<button (click)="editMeal()">{{editing ? 'Save' : 'Edit'}}</button>

@@ -4,9 +4,14 @@
     <div *ngIf="isActive"
         class="meal-plan__meals">
         <mpl-meal *ngFor="let meal of mealPlan.meals"
-            [meal]="meal"></mpl-meal>
+            [meal]="meal"
+            [mealId]="mealPlan.id"></mpl-meal>
         <div class="meal-plan-edit">
-            <input type="text" name="newMeal" placeholder="Add meal" [(ngModel)]="newMeal">
+            <input type="text" 
+                name="newMeal" 
+                placeholder="Add meal" 
+                [(ngModel)]="newMeal"
+                (keyup.enter)="addMeal()">
             <button (click)="addMeal()">Add meal</button>
         </div>
     </div>

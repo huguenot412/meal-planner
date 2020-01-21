@@ -51,4 +51,8 @@ export class MealPlansComponent implements OnInit {
     }
   }
 
+  public trackByFn(index: number, item: MealPlan): string {
+    return item.id;
+  }
+
 }
