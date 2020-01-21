@@ -11,6 +11,13 @@
         min="1"
         max="7"
         (change)="updateMealPlans(days)">
+    <div class="display-buttons">
+        <button class="back-one-week" (click)="updateMealPlans(days * -1)">BACK</button>
+        <button class="back-one-day" (click)="updateMealPlans(-1)">back</button>
+        <button class="today" (click)="updateMealPlans(0)">Today</button>
+        <button class="forward-one-day" (click)="updateMealPlans(1)">next</button>
+        <button class="forward-one-week" (click)="updateMealPlans(days)">NEXT</button>
+    </div>
     <div class="toggle-buttons">
         <button (click)="toggleMealPlans(true)" class="toggle-buttons__button">Expand All</button>
         <button (click)="toggleMealPlans(false)" class="toggle-buttons__button">Collapse All</button>
@@ -18,5 +25,5 @@
     <mpl-meal-plan class="mpl-meal-plan"
         *ngFor="let mealPlan of mealPlans; trackBy: trackByFn"
         [mealPlan]="mealPlan"
-        (updated)="updateMealPlans(days)"></mpl-meal-plan>
+        (updated)="updateMealPlans()"></mpl-meal-plan>
 </div>

@@ -38,10 +38,15 @@ export class MealPlansComponent implements OnInit {
     this.mealPlansList.forEach((mealPlan: MealPlanComponent) => mealPlan.isActive = toggle);
   }
 
-  public updateMealPlans(days: number): void {
-    this.mealPlans = [];   
+  public updateMealPlans(x?: number): void {
+    this.mealPlans = [];
+    if(x === 0) {
+      this.startDate = new Date();
+    } else if(x) {
+      this.startDate = new Date(this.startDate.getFullYear(), this.startDate.getMonth(), this.startDate.getDate() + x);
+    }
     const mealPlanMap: MealPlanMap = this.MealPlansService.getMeals();
-    for(let i = 0; i < days; i++) {
+    for(let i = 0; i < this.days; i++) {
       const mealPlan: MealPlan = mealPlanMap[moment(this.startDate).add(i, 'd').format('LL')];
       if(mealPlan) {
         this.mealPlans.push(mealPlan);

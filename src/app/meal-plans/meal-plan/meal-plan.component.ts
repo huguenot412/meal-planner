@@ -21,6 +21,7 @@ export class MealPlanComponent implements OnInit {
   }
 
   public addMeal(): void {
+    if(this.newMeal === '') { return };
     this.MealPlanService.addMeal(this.mealPlan, this.newMeal);
     this.newMeal = '';
     this.updated.emit();
