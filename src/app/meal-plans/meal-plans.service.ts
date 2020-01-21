@@ -12,6 +12,8 @@ export class MealPlansService {
 
   mealPlans: MealPlan[] = [];
 
+  // mealPlanMap: MealPlanMap = {}
+
   constructor() { }
 
   createMealPlanMap(): MealPlanMap {
@@ -40,6 +42,6 @@ export class MealPlansService {
 
   editMeal(mealPlanId: string, mealId: number, newValue: string): void {
     const mealPlanMap: MealPlanMap = this.createMealPlanMap();
-    mealPlanMap[mealPlanId].meals.find(meal => meal.id = mealId).name = newValue;
+    mealPlanMap[mealPlanId].meals.find(meal => meal.id === mealId).name = newValue;
   }
 }

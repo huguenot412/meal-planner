@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { MealPlan } from '../classes';
+import { MealPlan, Meal } from '../classes';
 import { MealPlansService } from '../meal-plans.service';
 
 @Component({
@@ -24,6 +24,10 @@ export class MealPlanComponent implements OnInit {
     this.MealPlanService.addMeal(this.mealPlan, this.newMeal);
     this.newMeal = '';
     this.updated.emit();
+  }
+
+  public trackByFn(index: number, item: Meal): number {
+    return item.id;
   }
 
 }

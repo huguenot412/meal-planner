@@ -3,7 +3,7 @@
     <h2>{{mealPlan.id}}</h2>
     <div *ngIf="isActive"
         class="meal-plan__meals">
-        <mpl-meal *ngFor="let meal of mealPlan.meals"
+        <mpl-meal *ngFor="let meal of mealPlan.meals; trackBy: trackByFn"
             [meal]="meal"
             [mealId]="mealPlan.id"></mpl-meal>
         <div class="meal-plan-edit">
