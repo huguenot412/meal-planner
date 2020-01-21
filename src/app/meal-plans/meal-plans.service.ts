@@ -24,12 +24,16 @@ export class MealPlansService {
     return this.mealPlanMap;
   }
 
+  addMealPlan(date: moment.Moment, meals: Meal[]) {
+    this.mealPlans.push(new MealPlan(date, meals));
+  }
+
   addMeal(mealPlan: MealPlan, newMeal: string): void {
     this.createMealPlanMap();
     if(this.mealPlanMap[mealPlan.id]) {
      this.mealPlanMap[mealPlan.id].meals.push(new Meal(newMeal));
     } else {
-      this.mealPlans.push(new MealPlan(mealPlan.date, [new Meal(newMeal)]));
+      this.addMealPlan(mealPlan.date, [new Meal(newMeal)]);
     }  
   }
 
