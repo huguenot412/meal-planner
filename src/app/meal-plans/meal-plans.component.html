@@ -12,11 +12,15 @@
         max="7"
         (change)="updateMealPlans(days)">
     <div class="display-buttons">
-        <button class="back-one-week" (click)="updateMealPlans(days * -1)">BACK</button>
-        <button class="back-one-day" (click)="updateMealPlans(-1)">back</button>
-        <button class="today" (click)="updateMealPlans(0)">Today</button>
-        <button class="forward-one-day" (click)="updateMealPlans(1)">next</button>
-        <button class="forward-one-week" (click)="updateMealPlans(days)">NEXT</button>
+        <button class="back-one-week" (click)="changeStartDate(days * -1)">BACK</button>
+        <button class="back-one-day" (click)="changeStartDate(-1)">back</button>
+        <button class="today" (click)="changeStartDate(0)">Today</button>
+        <button class="forward-one-day" (click)="changeStartDate(1)">next</button>
+        <button class="forward-one-week" (click)="changeStartDate(days)">NEXT</button>
+        <br>
+        <button class="display-buttons__btn" (click)="changeStartDateWeek(-7)">Last week</button>
+        <button class="display-buttons__btn" (click)="changeStartDateWeek(0)">This week</button>
+        <button class="display-buttons__btn" (click)="changeStartDateWeek(7)">Next week</button>
     </div>
     <div class="toggle-buttons">
         <button (click)="toggleMealPlans(true)" class="toggle-buttons__button">Expand All</button>

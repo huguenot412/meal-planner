@@ -27,7 +27,7 @@ export class MealPlansComponent implements OnInit {
   constructor(public MealPlansService: MealPlansService) { }
 
   ngOnInit() {
-    this.updateMealPlans(this.days);
+    this.updateMealPlans();
   }
   
   public getMealPlans() {
@@ -38,13 +38,8 @@ export class MealPlansComponent implements OnInit {
     this.mealPlansList.forEach((mealPlan: MealPlanComponent) => mealPlan.isActive = toggle);
   }
 
-  public updateMealPlans(x?: number): void {
+  public updateMealPlans(): void {
     this.mealPlans = [];
-    if(x === 0) {
-      this.startDate = new Date();
-    } else if(x) {
-      this.startDate = new Date(this.startDate.getFullYear(), this.startDate.getMonth(), this.startDate.getDate() + x);
-    }
     const mealPlanMap: MealPlanMap = this.MealPlansService.getMeals();
     for(let i = 0; i < this.days; i++) {
       const mealPlan: MealPlan = mealPlanMap[moment(this.startDate).add(i, 'd').format('LL')];
@@ -54,6 +49,25 @@ export class MealPlansComponent implements OnInit {
         this.mealPlans.push(new MealPlan(moment(this.startDate).add(i, 'd')));
       }    
     }
+  }
+
+  public changeStartDate(numberOfDays: number): void {
+    if(numberOfDays === 0) {
+      this.startDate = new Date();
+    } else {
+      const daysInMilliseconds: number = numberOfDays * 86400000;
+      this.startDate.setMilliseconds(daysInMilliseconds);
+    }
+    this.updateMealPlans();
+  }
+
+  public changeStartDateWeek(week: number): void {
+    this.days = 7;
+    const currentDayOfWeek = new Date().getDay();
+    const daysInMilliseconds: number = (currentDayOfWeek * -1 + week) * 86400000;
+    this.startDate = new Date();
+    this.startDate.setMilliseconds(daysInMilliseconds);
+    this.updateMealPlans();
   }
 
   public trackByFn(index: number, item: MealPlan): string {
