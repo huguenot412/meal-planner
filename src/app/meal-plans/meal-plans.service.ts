@@ -20,12 +20,12 @@ export class MealPlansService {
   }
 
   getMeals(): MealPlanMap {
-    this.createMealPlanMap();
     return this.mealPlanMap;
   }
 
-  addMealPlan(date: moment.Moment, meals: Meal[]) {
+  addMealPlan(date: moment.Moment, meals?: Meal[]) {
     this.mealPlans.push(new MealPlan(date, meals));
+    this.createMealPlanMap();
   }
 
   addMeal(mealPlan: MealPlan, newMeal: string): void {

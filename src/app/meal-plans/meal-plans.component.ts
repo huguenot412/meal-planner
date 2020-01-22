@@ -8,7 +8,6 @@ import { MealPlansService } from './meal-plans.service';
 import * as moment from 'moment';
 import { MealPlan } from './classes';
 import { MealPlanMap } from './types';
-import { weekStartsOn } from './enums';
 
 
 
@@ -22,13 +21,14 @@ export class MealPlansComponent implements OnInit {
   @ViewChildren(MealPlanComponent) mealPlansList: QueryList<MealPlanComponent>
 
   public mealPlans: MealPlan[] = [];
-  public days: number = 7;
+  public days: number = 1;
   public startDate: Date = new Date();
   public weekStartsOn: string = 'Sunday';
 
   constructor(public MealPlansService: MealPlansService) { }
 
   ngOnInit() {
+    this.MealPlansService.createMealPlanMap();
     this.updateMealPlans();
   }
   
@@ -48,6 +48,7 @@ export class MealPlansComponent implements OnInit {
       if(mealPlan) {
         this.mealPlans.push(mealPlan);
       } else {
+        // this.MealPlansService.addMealPlan(moment(this.startDate).add(i, 'd'), []);
         this.mealPlans.push(new MealPlan(moment(this.startDate).add(i, 'd')));
       }    
     }
