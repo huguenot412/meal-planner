@@ -1,8 +1,8 @@
 <div class="meal-plan">
     <h2 class="meal-plan__title">{{ mealPlan.date | date:'EEEE, MMMM d' }}</h2>
-    <h2>{{mealPlan.id}}</h2>
     <div *ngIf="isActive"
         class="meal-plan__meals">
+        <h3>Meals:</h3>
         <mpl-meal *ngFor="let meal of mealPlan.meals; trackBy: trackByFn"
             [meal]="meal"
             [mealId]="mealPlan.id"></mpl-meal>

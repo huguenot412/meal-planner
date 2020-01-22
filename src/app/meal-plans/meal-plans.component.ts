@@ -8,6 +8,7 @@ import { MealPlansService } from './meal-plans.service';
 import * as moment from 'moment';
 import { MealPlan } from './classes';
 import { MealPlanMap } from './types';
+import { weekStartsOn } from './enums';
 
 
 
@@ -23,6 +24,7 @@ export class MealPlansComponent implements OnInit {
   public mealPlans: MealPlan[] = [];
   public days: number = 7;
   public startDate: Date = new Date();
+  public weekStartsOn: string = 'Sunday';
 
   constructor(public MealPlansService: MealPlansService) { }
 
@@ -63,8 +65,9 @@ export class MealPlansComponent implements OnInit {
 
   public changeStartDateWeek(week: number): void {
     this.days = 7;
+    const startDay: number = this.weekStartsOn === 'Sunday' ? week : week + 1;
     const currentDayOfWeek = new Date().getDay();
-    const daysInMilliseconds: number = (currentDayOfWeek * -1 + week) * 86400000;
+    const daysInMilliseconds: number = (currentDayOfWeek * -1 + startDay) * 86400000;
     this.startDate = new Date();
     this.startDate.setMilliseconds(daysInMilliseconds);
     this.updateMealPlans();

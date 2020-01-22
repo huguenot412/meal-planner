@@ -21,6 +21,17 @@
         <button class="display-buttons__btn" (click)="changeStartDateWeek(-7)">Last week</button>
         <button class="display-buttons__btn" (click)="changeStartDateWeek(0)">This week</button>
         <button class="display-buttons__btn" (click)="changeStartDateWeek(7)">Next week</button>
+        <br>
+        <p>Week starts on:</p>
+        <div>
+            <input (change)="changeStartDateWeek(0)" [(ngModel)]="weekStartsOn" type="radio" id="Sunday" name="weekStartsOn" value="Sunday"
+                    checked>
+            <label for="Sunday">Sunday</label>
+        </div>  
+        <div>
+            <input (change)="changeStartDateWeek(0)" [(ngModel)]="weekStartsOn" type="radio" id="Monday" name="weekStartsOn" value="Monday">
+            <label for="Monday">Monday</label>
+        </div>
     </div>
     <div class="toggle-buttons">
         <button (click)="toggleMealPlans(true)" class="toggle-buttons__button">Expand All</button>
