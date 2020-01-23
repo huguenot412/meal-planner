@@ -1,10 +1,23 @@
 .meal-plan {
     padding: .5rem;
-    margin-bottom: .5rem;
-    box-shadow: 0px 3px 10px 1px rgba(51,51,51,1);
+    border: .1rem solid #333;
+    border-bottom: 0;
+}
+
+:host:last-child .meal-plan {
+    border-bottom: .1rem solid #333;
+}
+
+.meal-plan:hover {
+    background-color: #efefef;
 }
 
 .meal-plan__title {
-    margin: 0 0 1rem 0;
-    font-size: 1.4rem;
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.active {
+    background-color: #333;
+    color: #fff;
 }

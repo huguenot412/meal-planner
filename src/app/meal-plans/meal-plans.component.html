@@ -1,44 +1,58 @@
 <div class="meal-plans-container">
-    <input type="date" 
-        name="start-date" 
-        placeholder="Enter start date"
-        [(ngModel)]=startDate
-        (change)="updateMealPlans(days)">
-    <input type="number" 
-        name="days" 
-        placeholder="# of days"
-        [(ngModel)]="days"
-        min="1"
-        max="7"
-        (change)="updateMealPlans(days)">
-    <div class="display-buttons">
-        <button class="back-one-week" (click)="changeStartDate(days * -1)">BACK</button>
-        <button class="back-one-day" (click)="changeStartDate(-1)">back</button>
-        <button class="today" (click)="changeStartDate(0)">Today</button>
-        <button class="forward-one-day" (click)="changeStartDate(1)">next</button>
-        <button class="forward-one-week" (click)="changeStartDate(days)">NEXT</button>
-        <br>
-        <button class="display-buttons__btn" (click)="changeStartDateWeek(-7)">Last week</button>
-        <button class="display-buttons__btn" (click)="changeStartDateWeek(0)">This week</button>
-        <button class="display-buttons__btn" (click)="changeStartDateWeek(7)">Next week</button>
-        <br>
-        <p>Week starts on:</p>
-        <div>
-            <input (change)="changeStartDateWeek(0)" [(ngModel)]="weekStartsOn" type="radio" id="Sunday" name="weekStartsOn" value="Sunday"
-                    checked>
-            <label for="Sunday">Sunday</label>
-        </div>  
-        <div>
-            <input (change)="changeStartDateWeek(0)" [(ngModel)]="weekStartsOn" type="radio" id="Monday" name="weekStartsOn" value="Monday">
-            <label for="Monday">Monday</label>
+    <div class="meal-plans__control-panel">
+        <input type="date" 
+            name="start-date" 
+            placeholder="Enter start date"
+            [(ngModel)]=startDate
+            (change)="updateMealPlans(days)">
+        <input type="number" 
+            name="days" 
+            placeholder="# of days"
+            [(ngModel)]="days"
+            min="1"
+            max="7"
+            (change)="updateMealPlans(days)">
+        <div class="display-buttons">
+            <button class="back-one-week" (click)="changeStartDate(days * -1)">BACK</button>
+            <button class="back-one-day" (click)="changeStartDate(-1)">back</button>
+            <button class="today" (click)="changeStartDate(0)">Today</button>
+            <button class="forward-one-day" (click)="changeStartDate(1)">next</button>
+            <button class="forward-one-week" (click)="changeStartDate(days)">NEXT</button>
+
+            <button class="display-buttons__btn" (click)="changeStartDateWeek(-7)">Last week</button>
+            <button class="display-buttons__btn" (click)="changeStartDateWeek(0)">This week</button>
+            <button class="display-buttons__btn" (click)="changeStartDateWeek(7)">Next week</button>
+
+            <p>Week starts on:</p>
+            <div>
+                <input (change)="changeStartDateWeek(0)" [(ngModel)]="weekStartsOn" type="radio" id="Sunday" name="weekStartsOn" value="Sunday"
+                        checked>
+                <label for="Sunday">Sunday</label>
+            </div>  
+            <div>
+                <input (change)="changeStartDateWeek(0)" [(ngModel)]="weekStartsOn" type="radio" id="Monday" name="weekStartsOn" value="Monday">
+                <label for="Monday">Monday</label>
+            </div>
         </div>
     </div>
-    <div class="toggle-buttons">
+    <!-- Uneccessary with new layout -->
+    <!-- <div class="toggle-buttons">
         <button (click)="toggleMealPlans(true)" class="toggle-buttons__button">Expand All</button>
         <button (click)="toggleMealPlans(false)" class="toggle-buttons__button">Collapse All</button>
+    </div> -->
+
+    <div class="meal-plans__container">
+        <div class="meal-plans__days">
+            <mpl-meal-plan class="mpl-meal-plan"
+                *ngFor="let mealPlan of mealPlans; trackBy: trackByFn"
+                #mealPlanComponent
+                [mealPlan]="mealPlan"
+                (updated)="updateMealPlans()"
+                (click)="updateActiveMealPlan(mealPlan)"></mpl-meal-plan>
+        </div>
+        <div class="meal-plans__active-panel">
+            <h1>{{activeMealPlan.date | date:'EEEE, MMMM d'}}</h1>
+            <mpl-meal *ngFor="let meal of activeMealPlan.meals"></mpl-meal>
+        </div>
     </div>
-    <mpl-meal-plan class="mpl-meal-plan"
-        *ngFor="let mealPlan of mealPlans; trackBy: trackByFn"
-        [mealPlan]="mealPlan"
-        (updated)="updateMealPlans()"></mpl-meal-plan>
 </div>

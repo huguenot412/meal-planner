@@ -1,6 +1,7 @@
-<div class="meal-plan">
-    <h2 class="meal-plan__title">{{ mealPlan.date | date:'EEEE, MMMM d' }}</h2>
-    <div *ngIf="isActive"
+<div class="meal-plan" [class.active]="isActive" (click)="isActive = true">
+    <h2 class="meal-plan__title">{{ mealPlan.date | date:'EEEE' }}</h2>
+    <h2 class="meal-plan__title">{{ mealPlan.date | date:'MMMM d' }}</h2>
+    <!-- <div *ngIf="isActive"
         class="meal-plan__meals">
         <h3>Meals:</h3>
         <mpl-meal *ngFor="let meal of mealPlan.meals; trackBy: trackByFn"
@@ -14,7 +15,7 @@
                 (keyup.enter)="addMeal()">
             <button (click)="addMeal()">Add meal</button>
         </div>
-    </div>
-    <button (click)="isActive = !isActive"
-        class="meal-plan__button">{{ isActive ? 'Collapse' : 'Expand' }}</button>
+    </div> -->
+    <!-- <button (click)="isActive = !isActive"
+        class="meal-plan__button">{{ isActive ? 'Collapse' : 'Expand' }}</button> -->
 </div>

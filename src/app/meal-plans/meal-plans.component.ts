@@ -24,12 +24,14 @@ export class MealPlansComponent implements OnInit {
   public days: number = 1;
   public startDate: Date = new Date();
   public weekStartsOn: string = 'Sunday';
+  public activeMealPlan: MealPlan;
 
   constructor(public MealPlansService: MealPlansService) { }
 
   ngOnInit() {
     this.MealPlansService.createMealPlanMap();
     this.updateMealPlans();
+    this.activeMealPlan = this.mealPlans.find(mealPlan => mealPlan.id === moment(this.startDate).format('LL'));
   }
   
   public getMealPlans() {
@@ -52,6 +54,11 @@ export class MealPlansComponent implements OnInit {
         this.mealPlans.push(new MealPlan(moment(this.startDate).add(i, 'd')));
       }    
     }
+    this.activeMealPlan = this.mealPlans[0];
+  }
+
+  public updateActiveMealPlan(mealPlan: MealPlan): void {
+    this.activeMealPlan = mealPlan;
   }
 
   public changeStartDate(numberOfDays: number): void {
