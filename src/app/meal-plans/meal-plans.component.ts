@@ -54,11 +54,14 @@ export class MealPlansComponent implements OnInit {
         this.mealPlans.push(new MealPlan(moment(this.startDate).add(i, 'd')));
       }    
     }
+    // this.updateActiveMealPlan(this.mealPlans[0]);
     this.activeMealPlan = this.mealPlans[0];
   }
 
   public updateActiveMealPlan(mealPlan: MealPlan): void {
     this.activeMealPlan = mealPlan;
+    this.mealPlansList.forEach((mealPlanComponent: MealPlanComponent) => mealPlanComponent.checkIfIsActive(mealPlan.id));
+
   }
 
   public changeStartDate(numberOfDays: number): void {

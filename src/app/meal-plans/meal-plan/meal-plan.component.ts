@@ -31,4 +31,8 @@ export class MealPlanComponent implements OnInit {
     return item.id;
   }
 
+  public checkIfIsActive(id: string): void {
+    this.mealPlan.id === id ? this.isActive = true : this.isActive = false;
+  }
+
 }
