@@ -29,21 +29,21 @@ export class MealPlansService {
   }
 
   addMeal(mealPlan: MealPlan, newMeal: string): void {
-    this.createMealPlanMap();
     if(this.mealPlanMap[mealPlan.id]) {
      this.mealPlanMap[mealPlan.id].meals.push(new Meal(newMeal));
     } else {
       this.addMealPlan(mealPlan.date, [new Meal(newMeal)]);
-    }  
+    }
+    this.createMealPlanMap();
   }
 
   deleteMeal(mealPlanId: string, mealId: number): void {
-    this.createMealPlanMap();
     this.mealPlanMap[mealPlanId].meals = this.mealPlanMap[mealPlanId].meals.filter(meal => meal.id !== mealId);
+    this.createMealPlanMap();
   }
 
   editMeal(mealPlanId: string, mealId: number, newValue: string): void {
-    this.createMealPlanMap();
     this.mealPlanMap[mealPlanId].meals.find(meal => meal.id === mealId).name = newValue;
+    this.createMealPlanMap();
   }
 }

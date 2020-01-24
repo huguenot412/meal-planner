@@ -16,20 +16,20 @@ export class MealComponent implements OnInit {
   private editing: boolean = false;
   public editedMeal: string = ''
 
-  constructor(public MealPlanService: MealPlansService) { }
+  constructor(public MealPlansService: MealPlansService) { }
 
   ngOnInit() {
   }
 
   private editMeal(): void {
     if(this.editing) {
-      this.MealPlanService.editMeal(this.mealId, this.meal.id, this.editedMeal);
+      this.MealPlansService.editMeal(this.mealId, this.meal.id, this.editedMeal);
     }
     this.editing = !this.editing;
   }
 
   private deleteMeal(): void {
-    this.MealPlanService.deleteMeal(this.mealId, this.meal.id);
+    this.MealPlansService.deleteMeal(this.mealId, this.meal.id);
   }
 
 }

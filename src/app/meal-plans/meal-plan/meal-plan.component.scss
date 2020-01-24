@@ -1,23 +1,3 @@
-.meal-plan {
-    padding: .5rem;
-    border: .1rem solid #333;
-    border-bottom: 0;
-}
-
-:host:last-child .meal-plan {
-    border-bottom: .1rem solid #333;
-}
-
-.meal-plan:hover {
-    background-color: #efefef;
-}
-
-.meal-plan__title {
-    margin: 0;
-    font-size: 1.2rem;
-}
-
-.active {
-    background-color: #333;
-    color: #fff;
+.active-panel__date {
+    margin: 0 0 2rem 0;
 }

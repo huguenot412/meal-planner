@@ -12,12 +12,12 @@ export class MealPlanComponent implements OnInit {
   @Input() public mealPlan: MealPlan;
   @Output() public updated = new EventEmitter(); 
 
-  public isActive: boolean = false;
   public newMeal: string = '';
 
   constructor(public MealPlanService: MealPlansService) { }
 
   ngOnInit() {
+    
   }
 
   public addMeal(): void {
@@ -27,12 +27,8 @@ export class MealPlanComponent implements OnInit {
     this.updated.emit();
   }
 
-  public trackByFn(index: number, item: Meal): number {
+  public trackByMeal(index: number, item: Meal): number {
     return item.id;
-  }
-
-  public checkIfIsActive(id: string): void {
-    this.mealPlan.id === id ? this.isActive = true : this.isActive = false;
   }
 
 }

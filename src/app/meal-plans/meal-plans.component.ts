@@ -1,4 +1,4 @@
-import { ViewChildren, QueryList } from '@angular/core';
+import { ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
 
@@ -16,30 +16,32 @@ import { MealPlanMap } from './types';
   templateUrl: './meal-plans.component.html',
   styleUrls: ['./meal-plans.component.scss']
 })
-export class MealPlansComponent implements OnInit {
+export class MealPlansComponent implements OnInit, AfterViewInit {
 
   @ViewChildren(MealPlanComponent) mealPlansList: QueryList<MealPlanComponent>
 
   public mealPlans: MealPlan[] = [];
-  public days: number = 1;
+  public days: number = 7;
   public startDate: Date = new Date();
   public weekStartsOn: string = 'Sunday';
   public activeMealPlan: MealPlan;
+  public previewMealPlan: MealPlan | null;
+  public newMeal: string = '';
 
   constructor(public MealPlansService: MealPlansService) { }
 
   ngOnInit() {
     this.MealPlansService.createMealPlanMap();
     this.updateMealPlans();
-    this.activeMealPlan = this.mealPlans.find(mealPlan => mealPlan.id === moment(this.startDate).format('LL'));
+    this.activeMealPlan = this.mealPlans[0];
+  }
+
+  ngAfterViewInit() {
+    
   }
   
   public getMealPlans() {
     return this.MealPlansService.getMeals();
-  }
-
-  public toggleMealPlans(toggle: boolean): void {
-    this.mealPlansList.forEach((mealPlan: MealPlanComponent) => mealPlan.isActive = toggle);
   }
 
   public updateMealPlans(): void {
@@ -50,18 +52,22 @@ export class MealPlansComponent implements OnInit {
       if(mealPlan) {
         this.mealPlans.push(mealPlan);
       } else {
-        // this.MealPlansService.addMealPlan(moment(this.startDate).add(i, 'd'), []);
         this.mealPlans.push(new MealPlan(moment(this.startDate).add(i, 'd')));
       }    
     }
-    // this.updateActiveMealPlan(this.mealPlans[0]);
-    this.activeMealPlan = this.mealPlans[0];
   }
 
-  public updateActiveMealPlan(mealPlan: MealPlan): void {
-    this.activeMealPlan = mealPlan;
-    this.mealPlansList.forEach((mealPlanComponent: MealPlanComponent) => mealPlanComponent.checkIfIsActive(mealPlan.id));
+  public updateActiveMealPlan(mealPlan: MealPlan, isPreview: boolean): void {
+    if(isPreview) {
+      this.previewMealPlan = mealPlan;
+    } else {
+      this.activeMealPlan = mealPlan;
+    }
+    
+  }
 
+  public endMealPlanPreview(): void {
+    this.previewMealPlan = null;
   }
 
   public changeStartDate(numberOfDays: number): void {
@@ -86,6 +92,12 @@ export class MealPlansComponent implements OnInit {
 
   public trackByFn(index: number, item: MealPlan): string {
     return item.id;
+  }
+
+  public addMeal(): void {
+    if(this.newMeal === '') { return };
+    this.MealPlansService.addMeal(this.activeMealPlan, this.newMeal);
+    this.newMeal = '';
   }
 
 }

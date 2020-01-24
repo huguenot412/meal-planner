@@ -35,24 +35,25 @@
             </div>
         </div>
     </div>
-    <!-- Uneccessary with new layout -->
-    <!-- <div class="toggle-buttons">
-        <button (click)="toggleMealPlans(true)" class="toggle-buttons__button">Expand All</button>
-        <button (click)="toggleMealPlans(false)" class="toggle-buttons__button">Collapse All</button>
-    </div> -->
-
     <div class="meal-plans__container">
         <div class="meal-plans__days">
-            <mpl-meal-plan class="mpl-meal-plan"
+            <div class="meal-plan-selector"
                 *ngFor="let mealPlan of mealPlans; trackBy: trackByFn"
-                #mealPlanComponent
-                [mealPlan]="mealPlan"
-                (updated)="updateMealPlans()"
-                (click)="updateActiveMealPlan(mealPlan)"></mpl-meal-plan>
+                [class.active]="mealPlan.id === activeMealPlan.id"
+                (click)="updateActiveMealPlan(mealPlan, false)"
+                (mouseover)="updateActiveMealPlan(mealPlan, true)"
+                (mouseleave)="endMealPlanPreview()">
+                <h2 class="meal-plan-selector__title">{{ mealPlan.date | date:'EEEE' }}</h2>
+                <h2 class="meal-plan-selector__title">{{ mealPlan.date | date:'MMMM d' }}</h2>
+            </div>
         </div>
         <div class="meal-plans__active-panel">
-            <h1>{{activeMealPlan.date | date:'EEEE, MMMM d'}}</h1>
-            <mpl-meal *ngFor="let meal of activeMealPlan.meals"></mpl-meal>
+            <mpl-meal-plan *ngIf="activeMealPlan && !previewMealPlan" 
+                [mealPlan]="activeMealPlan"
+                (updated)="updateMealPlans()"></mpl-meal-plan>
+            <mpl-meal-plan *ngIf="previewMealPlan" 
+                [mealPlan]="previewMealPlan"
+                (updated)="updateMealPlans()"></mpl-meal-plan>
         </div>
     </div>
 </div>
