@@ -10,6 +10,7 @@ import { MealPlansService } from '../meal-plans.service';
 export class MealPlanComponent implements OnInit {
 
   @Input() public mealPlan: MealPlan;
+  @Input() public activeOrPreview: string;
   @Output() public updated = new EventEmitter(); 
 
   public newMeal: string = '';

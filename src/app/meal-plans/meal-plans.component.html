@@ -38,7 +38,7 @@
     <div class="meal-plans__container">
         <div class="meal-plans__days">
             <div class="meal-plan-selector"
-                *ngFor="let mealPlan of mealPlans; trackBy: trackByFn"
+                *ngFor="let mealPlan of mealPlans; trackBy: trackByMealPlan"
                 [class.active]="mealPlan.id === activeMealPlan.id"
                 (click)="updateActiveMealPlan(mealPlan, false)"
                 (mouseover)="updateActiveMealPlan(mealPlan, true)"
@@ -50,10 +50,13 @@
         <div class="meal-plans__active-panel">
             <mpl-meal-plan *ngIf="activeMealPlan && !previewMealPlan" 
                 [mealPlan]="activeMealPlan"
-                (updated)="updateMealPlans()"></mpl-meal-plan>
+                (updated)="updateMealPlans()"
+                [activeOrPreview]="previewMealPlan ? 'Preview' : 'Active'"></mpl-meal-plan>
             <mpl-meal-plan *ngIf="previewMealPlan" 
                 [mealPlan]="previewMealPlan"
-                (updated)="updateMealPlans()"></mpl-meal-plan>
+                (updated)="updateMealPlans()"
+                [activeOrPreview]="previewMealPlan ? 'Preview' : 'Active'"
+                ></mpl-meal-plan>
         </div>
     </div>
 </div>

@@ -41,29 +41,28 @@ export class MealPlansComponent implements OnInit, AfterViewInit {
   }
   
   public getMealPlans() {
-    return this.MealPlansService.getMeals();
+    return this.MealPlansService.getMealPlans();
   }
 
   public updateMealPlans(): void {
     this.mealPlans = [];
-    const mealPlanMap: MealPlanMap = this.MealPlansService.getMeals();
+    const mealPlanMap: MealPlanMap = this.MealPlansService.getMealPlans();
     for(let i = 0; i < this.days; i++) {
       const mealPlan: MealPlan = mealPlanMap[moment(this.startDate).add(i, 'd').format('LL')];
       if(mealPlan) {
         this.mealPlans.push(mealPlan);
       } else {
-        this.mealPlans.push(new MealPlan(moment(this.startDate).add(i, 'd')));
+        this.mealPlans.push(new MealPlan(moment(this.startDate).add(i, 'd'), []));
       }    
     }
   }
 
   public updateActiveMealPlan(mealPlan: MealPlan, isPreview: boolean): void {
-    if(isPreview) {
+    if(isPreview && mealPlan.id !== this.activeMealPlan.id) {
       this.previewMealPlan = mealPlan;
     } else {
       this.activeMealPlan = mealPlan;
     }
-    
   }
 
   public endMealPlanPreview(): void {
@@ -73,6 +72,9 @@ export class MealPlansComponent implements OnInit, AfterViewInit {
   public changeStartDate(numberOfDays: number): void {
     if(numberOfDays === 0) {
       this.startDate = new Date();
+      this.updateMealPlans();
+      this.updateActiveMealPlan(this.mealPlans[0], false);
+      return; 
     } else {
       const daysInMilliseconds: number = numberOfDays * 86400000;
       this.startDate.setMilliseconds(daysInMilliseconds);
@@ -90,7 +92,7 @@ export class MealPlansComponent implements OnInit, AfterViewInit {
     this.updateMealPlans();
   }
 
-  public trackByFn(index: number, item: MealPlan): string {
+  public trackByMealPlan(index: number, item: MealPlan): string {
     return item.id;
   }
 

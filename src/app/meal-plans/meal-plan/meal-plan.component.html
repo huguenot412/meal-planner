@@ -1,6 +1,6 @@
 <h1 class="active-panel__date">{{mealPlan.date | date:'EEEE, MMMM d'}}</h1>
 <div class="meal-plan__meals">
-    <h3>Meals:</h3>
+    <h3 class="meals-header">Meals:</h3>
     <mpl-meal *ngFor="let meal of mealPlan.meals; trackBy: trackByMeal"
         [meal]="meal"
         [mealId]="mealPlan.id"></mpl-meal>
