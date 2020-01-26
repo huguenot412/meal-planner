@@ -10,6 +10,7 @@ import { MealComponent } from './meal-plans/meal/meal.component';
 import { CookbookComponent } from './cookbook/cookbook.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { NewMealPlanComponent } from './meal-plans/new-meal-plan/new-meal-plan.component';
+import { RecipeComponent } from './cookbook/recipe/recipe.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NewMealPlanComponent } from './meal-plans/new-meal-plan/new-meal-plan.c
     MealComponent,
     CookbookComponent,
     ShoppingListComponent,
-    NewMealPlanComponent
+    NewMealPlanComponent,
+    RecipeComponent
   ],
   imports: [
     BrowserModule,
