@@ -1,1 +1,6 @@
-<p>cookbook works!</p>
+<h1>Cookbook</h1>
+<input type="text" [(ngModel)]="newRecipeName" name="newRecipeName">
+<button (click)="addRecipe()">Add Recipe</button>
+<mpl-recipe class="recipe" 
+    *ngFor="let recipe of recipes; trackBy: trackByRecipeId"
+    [recipe]="recipe"></mpl-recipe>

@@ -8,26 +8,30 @@ import { RecipesMap } from './types';
 })
 export class RecipesService {
 
-  private recipes: Recipe[];
-  private recipesMap: RecipesMap;
+  public recipes: Recipe[] = [];
+  public recipesMap: RecipesMap = {};
 
   constructor() { }
 
-  public getRecipes(): RecipesMap {
-    return this.recipesMap;
+  public getRecipes(): Recipe[] {
+    return this.recipes;
   }
 
-  private createRecipesMap(): void {
+  public getRecipe(recipeId: number): Recipe {
+    return this.recipesMap[recipeId];
+  }
+
+  public createRecipesMap(): void {
     this.recipes.forEach((recipe: Recipe) => this.recipesMap[recipe._id] = recipe);
   }
 
-  private addRecipe(recipe: Recipe) {
+  public addRecipe(recipe: Recipe) {
     this.recipes.push(recipe);
     this.createRecipesMap();
   }
 
-  // private deleteRecipe(recipeId: number) {
-  //   this.recipes.splice()
-  // }
+  public deleteRecipe(recipeId: number) {
+    this.recipes = this.recipes.filter(recipe => recipe._id !== recipeId)
+  }
 
 }

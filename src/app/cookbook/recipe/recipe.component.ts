@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { Recipe } from '../classes';
 
 @Component({
   selector: 'mpl-recipe',
@@ -6,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recipe.component.scss']
 })
 export class RecipeComponent implements OnInit {
+
+  @Input() public recipe: Recipe;
 
   constructor() { }
 
