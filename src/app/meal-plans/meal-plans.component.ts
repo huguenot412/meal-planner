@@ -18,15 +18,15 @@ import { MealPlanMap } from './types';
 })
 export class MealPlansComponent implements OnInit, AfterViewInit {
 
-  @ViewChildren(MealPlanComponent) mealPlansList: QueryList<MealPlanComponent>
+  @ViewChildren(MealPlanComponent) mealPlansList: QueryList<MealPlanComponent>;
 
   public mealPlans: MealPlan[] = [];
-  public days: number = 7;
+  public days = 7;
   public startDate: Date = new Date();
-  public weekStartsOn: string = 'Sunday';
+  public weekStartsOn = 'Sunday';
   public activeMealPlan: MealPlan;
   public previewMealPlan: MealPlan | null;
-  public newMeal: string = '';
+  public newMeal = '';
 
   constructor(public MealPlansService: MealPlansService) { }
 
@@ -37,9 +37,9 @@ export class MealPlansComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    
+
   }
-  
+
   public getMealPlans() {
     return this.MealPlansService.getMealPlans();
   }
@@ -47,18 +47,18 @@ export class MealPlansComponent implements OnInit, AfterViewInit {
   public updateMealPlans(): void {
     this.mealPlans = [];
     const mealPlanMap: MealPlanMap = this.MealPlansService.getMealPlans();
-    for(let i = 0; i < this.days; i++) {
+    for (let i = 0; i < this.days; i++) {
       const mealPlan: MealPlan = mealPlanMap[moment(this.startDate).add(i, 'd').format('LL')];
-      if(mealPlan) {
+      if (mealPlan) {
         this.mealPlans.push(mealPlan);
       } else {
         this.mealPlans.push(new MealPlan(moment(this.startDate).add(i, 'd'), []));
-      }    
+      }
     }
   }
 
   public updateActiveMealPlan(mealPlan: MealPlan, isPreview: boolean): void {
-    if(isPreview && mealPlan.id !== this.activeMealPlan.id) {
+    if (isPreview && mealPlan.id !== this.activeMealPlan.id) {
       this.previewMealPlan = mealPlan;
     } else {
       this.activeMealPlan = mealPlan;
@@ -70,11 +70,11 @@ export class MealPlansComponent implements OnInit, AfterViewInit {
   }
 
   public changeStartDate(numberOfDays: number): void {
-    if(numberOfDays === 0) {
+    if (numberOfDays === 0) {
       this.startDate = new Date();
       this.updateMealPlans();
       this.updateActiveMealPlan(this.mealPlans[0], false);
-      return; 
+      return;
     } else {
       const daysInMilliseconds: number = numberOfDays * 86400000;
       this.startDate.setMilliseconds(daysInMilliseconds);
@@ -97,7 +97,7 @@ export class MealPlansComponent implements OnInit, AfterViewInit {
   }
 
   public addMeal(): void {
-    if(this.newMeal === '') { return };
+    if (this.newMeal === '') { return; }
     this.MealPlansService.addMeal(this.activeMealPlan, this.newMeal);
     this.newMeal = '';
   }

@@ -11,6 +11,9 @@ import { CookbookComponent } from './cookbook/cookbook.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { NewMealPlanComponent } from './meal-plans/new-meal-plan/new-meal-plan.component';
 import { RecipeComponent } from './cookbook/recipe/recipe.component';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,9 @@ import { RecipeComponent } from './cookbook/recipe/recipe.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule
   ],
   providers: [],
   bootstrap: [AppComponent]

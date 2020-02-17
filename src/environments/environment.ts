@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyDWoiR9XnpFBxDTueZjexbZV863E1a_pyw',
+   authDomain: 'meal-planner-90c19.firebaseapp.com',
+    databaseURL: 'https://meal-planner-90c19.firebaseio.com',
+    projectId: 'meal-planner-90c19',
+    storageBucket: 'meal-planner-90c19.appspot.com',
+    messagingSenderId: '977453130904',
+    appId: '1:977453130904:web:98e0b4d1c050566ccb5ced',
+    measurementId: 'G-NJWJVK1VVP'
+  }
 };
 
 /*
