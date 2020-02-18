@@ -1,6 +1,6 @@
 export class Recipe {
-    private id: number;
-    name: string;
+    id?: string;
+    name?: string;
     source?: string;
     ingredients?: string[];
     instructions?: string[];
@@ -9,18 +9,11 @@ export class Recipe {
     comments?: string[];
     prepTime?: number;
     cookTime?: number;
-    totalTime?: number;
     tags?: string[];
     originalOwner?: string;
     likes?: number;
 
     constructor(name: string) {
         this.name = name;
-        this.id = Date.now();
-        this.totalTime = this.prepTime + this.cookTime;
-    }
-
-    get _id() {
-        return this.id;
     }
 }

@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   firebase: {
     apiKey: 'AIzaSyDWoiR9XnpFBxDTueZjexbZV863E1a_pyw',
-   authDomain: 'meal-planner-90c19.firebaseapp.com',
+    authDomain: 'meal-planner-90c19.firebaseapp.com',
     databaseURL: 'https://meal-planner-90c19.firebaseio.com',
     projectId: 'meal-planner-90c19',
     storageBucket: 'meal-planner-90c19.appspot.com',

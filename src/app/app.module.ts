@@ -12,7 +12,7 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { NewMealPlanComponent } from './meal-plans/new-meal-plan/new-meal-plan.component';
 import { RecipeComponent } from './cookbook/recipe/recipe.component';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { environment } from 'src/environments/environment';
 
 @NgModule({
@@ -31,7 +31,7 @@ import { environment } from 'src/environments/environment';
     AppRoutingModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

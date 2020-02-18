@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { RecipesService } from './recipes.service';
+import { RecipesService } from './services/recipes.service';
 import { RecipesMap } from './types';
 import { Recipe } from './classes';
 
@@ -11,17 +11,16 @@ import { Recipe } from './classes';
 })
 export class CookbookComponent implements OnInit {
 
-  public recipes: Recipe[];
+  public recipes: any;
   public newRecipeName: string;
 
-  constructor(private RecipesService: RecipesService) { }
+  constructor(private recipesService: RecipesService) { }
 
   ngOnInit() {
-    this.recipes = this.RecipesService.getRecipes();
+    this.recipes = this.recipesService.getRecipes();
   }
 
   addRecipe() {
-    this.RecipesService.addRecipe(new Recipe(this.newRecipeName));
+    this.recipesService.addRecipe(new Recipe(this.newRecipeName));
   }
-
 }
