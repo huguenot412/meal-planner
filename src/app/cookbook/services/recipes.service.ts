@@ -39,5 +39,4 @@ export class RecipesService {
   public deleteRecipe(recipeId: string) {
     this.recipesCollection.doc(recipeId).delete();
   }
-
 }
